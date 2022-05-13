@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet name="/css/primeflex.min.css" />
+        <h:outputStylesheet name="/css/estilo.css" />
+    </h:head>
+    <h:body>
+        <div class="card">
+            <h:form>
+                <p:growl id="growl" for="sticky-key" showDetail="false" sticky="true" />
+                
+                <div class="p-field p-grid">
+                    <h3>Autenticação</h3>
+                </div>
+                
+                <div class="p-field p-grid">
+                    <label for="login" class="p-col-fixed" style="width:100px">Login</label>
+                    <div class="p-col">
+                        <p:inputText id="login" value="#{pessoaController.pessoa.login}"/>
+                    </div>
+                </div>
+                <div class="p-field p-grid">
+                    <label for="senha" class="p-col-fixed" style="width:100px">Senha</label>
+                    <div class="p-col">
+                        <p:password id="senha" value="#{pessoaController.pessoa.senha}"/>
+                    </div>
+                </div>
+                <br/>
+                <div class="p-field p-grid">
+
+                    <div class="p-col">
+                        <p:commandButton value="Entrar" action="#{pessoaController.autenticar()}" update="growl"/>
+                    </div>
+                </div>
+
+
+
+
+            </h:form>
+        </div>
+    </h:body>
+</html>
+
