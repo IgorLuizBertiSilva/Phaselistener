@@ -4,13 +4,13 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Index</title>
         <h:outputStylesheet name="/css/primeflex.min.css" />
         <h:outputStylesheet name="/css/estilo.css" />
     </h:head>
     <h:body>
         <div class="card">
-            <h:form>
+            <h:form id="formulario">
                 <p:growl id="growl" for="sticky-key" showDetail="false" sticky="true" />
                 
                 <div class="p-field p-grid">
@@ -33,7 +33,7 @@
                 <div class="p-field p-grid">
 
                     <div class="p-col">
-                        <p:commandButton value="Entrar" action="#{pessoaController.autenticar()}" update="growl"/>
+                        <p:commandButton value="Entrar" action="#{pessoaController.autenticar()}" update="growl, formulario"/>
                     </div>
                 </div>
 
