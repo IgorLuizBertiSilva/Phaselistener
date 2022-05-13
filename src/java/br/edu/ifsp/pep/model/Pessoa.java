@@ -28,6 +28,9 @@ public class Pessoa implements Serializable{
     
     @Column(name = "nome", length = 45, nullable = false)
     private String nome;
+    
+    @Column(name = "tipo", length = 3)
+    private String tipo;
 
     public String getLogin() {
         return login;
@@ -52,6 +55,16 @@ public class Pessoa implements Serializable{
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+    
+    
 
     @Override
     public int hashCode() {

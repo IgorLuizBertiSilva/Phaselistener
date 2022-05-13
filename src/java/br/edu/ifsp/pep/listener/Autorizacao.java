@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author aluno
  */
 public class Autorizacao implements PhaseListener {
-    
+
     @Inject
     private PessoaController pessoaController;
 
@@ -30,10 +30,42 @@ public class Autorizacao implements PhaseListener {
         HttpServletRequest request = (HttpServletRequest) event.getFacesContext().getExternalContext().getRequest();
 
         System.out.println("Path: " + request.getServletPath());
-        if (request.getServletPath().equals("/financeiro.xhtml")) {
-            if(pessoaController.getPessoaAutentificada() == null){
+//        if (request.getServletPath().equals("/financeiro.xhtml")) {
+//            if(pessoaController.getPessoaAutentificada() == null){
+//                try {
+//                    event.getFacesContext().getExternalContext().redirect("index.xhtml");
+//                } catch (IOException ex) {
+//                    ex.printStackTrace();
+//                }
+//            }
+//        }
+        if (request.getServletPath().equals("/financeiro/admin.xhtml")) {
+            if (pessoaController.getPessoaAutentificada() == null
+                    || !pessoaController.getPessoaAutentificada().getTipo().equals("ADM")) {
                 try {
-                    event.getFacesContext().getExternalContext().redirect("index.xhtml");
+                    event.getFacesContext().getExternalContext().redirect("tela.xhtml");
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        
+        if (request.getServletPath().equals("/financeiro/gerencial.xhtml")) {
+            if (pessoaController.getPessoaAutentificada() == null
+                    || pessoaController.getPessoaAutentificada().getTipo().equals("FIN")) {
+                try {
+                    event.getFacesContext().getExternalContext().redirect("tela.xhtml");
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        
+        if (request.getServletPath().equals("/administrativo/consulta.xhtml")) {
+            if (pessoaController.getPessoaAutentificada() == null
+                    || pessoaController.getPessoaAutentificada().getTipo() == null) {
+                try {
+                    event.getFacesContext().getExternalContext().redirect("tela.xhtml");
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -41,13 +73,16 @@ public class Autorizacao implements PhaseListener {
         }
 
 //        System.out.println("................");
-//        System.out.println("Address: " + request.getRemoteAddr());
-//        System.out.println("Host: " + request.getRemoteHost());
-//        System.out.println("User: " + request.getRemoteUser());
-//        System.out.println("Local Addr: " + request.getLocalAddr());
-//        System.out.println("Path: " + request.getServletPath());
-//        System.out.println("Server Name: " + request.getServerName());
-//        System.out.println("Path Info: " + request.getPathInfo());
+        //        System.out.println("Address: " + request.getRemoteAddr());
+        //        System.out.println("Host: " + request.getRemoteHost());
+        //        System.out.println("User: " + request.getRemoteUser());
+        //        System.out.println("Local Addr: " + request.getLocalAddr());
+        //        System.out.println("Path: " + request.getServletPath());
+        //        System.out.println("Server Name: " + request.getServerName());
+        //        System.out.println("Path Info: " + request.getPathInfo());
+        {
+
+        }
     }
 
     @Override
